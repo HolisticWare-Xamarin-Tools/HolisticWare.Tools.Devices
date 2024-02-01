@@ -2,7 +2,7 @@
 
 readme.md
 
-Set od managed APIs, libraries and nuget package for 
+Set of managed APIs, libraries and nuget package for 
 
 *  launching emulators and simulators
 
