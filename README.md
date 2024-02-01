@@ -9,3 +9,7 @@ Set od managed APIs, libraries and nuget package for
 *  gathering info about AVDs and iOS simulator devices
 
 *  ...
+
+## Nuget (preview)
+
+https://www.nuget.org/packages/HolisticWare.Tools.Devices/
