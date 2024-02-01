@@ -19,6 +19,12 @@ public partial class
                                                             ;
 
     private static Process? process = default;
+    
+    public static Dictionary<string, Process> Processes
+    {
+        get;
+        set;
+    } = new Dictionary<string, Process>();
 
     public static
         EmulatorSettings
@@ -32,22 +38,25 @@ public partial class
         stdoutThread.Name = "holisticware_tools_devices_android_emulator_stdout_writer";
         stdoutThread.Start();
 
-        string home = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-        string path_emulator = $"{home}\\Library\\Android\\sdk\\emulator\\emulator";
-
+        string path = AndroidVirtualDeviceAVD.InstallRoot;
+        
         process = new Process()
         {
             StartInfo = new ProcessStartInfo()
             {
                 UseShellExecute = false,
                 RedirectStandardOutput = true,
-                FileName = path_emulator,
+                FileName = path,
                 Arguments = $"-avd {avd_name} {options_fast_load}"
             }
         };
         
         process.Start();
-        
+
+        if (process is not null && ! process.HasExited)
+        {
+            Processes.Add(avd_name, process);
+        }
         
         EmulatorSettings es = new EmulatorSettings();
 
