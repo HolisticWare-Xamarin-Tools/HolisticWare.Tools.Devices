@@ -4,7 +4,6 @@
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
 ## HolisticWare/Xamarin/Microsoft
-## HolisticWare/Xamarin/Microsoft
 output/
 
 ## HolisticWare
@@ -24,7 +23,6 @@ output/
 
 # Cake
 tools/
-
 
 # User-specific files
 *.rsuser
