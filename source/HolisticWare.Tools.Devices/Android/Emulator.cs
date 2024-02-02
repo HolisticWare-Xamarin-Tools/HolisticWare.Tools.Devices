@@ -13,7 +13,9 @@ public partial class
                                                             + " " +
                                                             "-gpu on"
                                                             + " " +
-                                                            "-no-snapshot-load"
+                                                            "-no-snapshot-save"
+                                                            // + " " +
+                                                            // "-no-snapshot-load"
                                                             + " " +
                                                             "-no-boot-anim"
                                                             ;
@@ -33,6 +35,9 @@ public partial class
                                             string avd_name
                                         )
     {
+        // https://stackoverflow.com/questions/29684798/c-sharp-redirecting-process-results-to-a-text-file
+        // https://stackoverflow.com/questions/18588659/redirect-process-output-c-sharp
+
         Thread stdoutThread = new Thread(new ThreadStart(WriteStandardOutput));
         stdoutThread.IsBackground = true;
         stdoutThread.Name = "holisticware_tools_devices_android_emulator_stdout_writer";
@@ -50,6 +55,8 @@ public partial class
                 Arguments = $"-avd {avd_name} {options_fast_load}"
             }
         };
+        process.OutputDataReceived += new DataReceivedEventHandler(Launch_ErrorDataReceived);
+        process.ErrorDataReceived += new DataReceivedEventHandler(Launch_OutputDataReceived);
         
         process.Start();
 
@@ -64,11 +71,48 @@ public partial class
     }
 
     private static 
+        void                            Launch_OutputDataReceived
+                                        (
+                                            object sender, 
+                                            DataReceivedEventArgs e
+                                        )
+    {
+        throw new NotImplementedException();
+    }
+
+    private static 
+        void 
+                                        Launch_ErrorDataReceived
+                                        (
+                                            object sender, 
+                                            DataReceivedEventArgs e
+                                        )
+    {
+        throw new NotImplementedException();
+    }
+
+    private static 
         void 
                                         WriteStandardOutput
                                         (
                                         )
     {
         return;
+    }
+
+
+    public static
+        List<string>
+                                        List
+                                        (
+                                        )
+    {
+        // $HOME/.android/avd
+        //      Pixel_3a_API_34_extension_level_7_arm64-v8a.avd
+        //      Pixel_3a_API_34_extension_level_7_arm64-v8a.ini
+        //      nexus_9_api_33.avd
+        //      nexus_9_api_33.ini
+
+        return new List<string>();
     }
 }
